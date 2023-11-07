@@ -1,0 +1,73 @@
+>>pip list
+
+Package Version
+------- -------
+pip     23.3.1
+
+---- return the package version installed
+
+//
+
+>>deactivate 
+
+---- disables python environment from Command terminal (py3Env)
+
+//
+
+>>pip3 list
+
+Package Version
+------- -------
+pip     23.2.1
+
+[notice] A new release of pip is available: 23.2.1 -> 23.3.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+---- when disabled it doesnt show other installed packages
+
+//
+
+>>call axsos\bootcamp\python_stack\my_environments\py3env\scripts\activate
+
+(py3Env) C:\>
+
+---- activates python environment in command prompt
+
+//
+
+>>pip install Django==2.2.4
+
+---- downloads and installs Django-2.2.4-py3-none-any.whl and collected packages pytz, sqlparse, Django
+
+//
+
+>>pip freeze 
+
+Django==2.2.4
+pytz==2023.3.post1
+sqlparse==0.4.4
+
+---- return the downloaded packages and their version
+---- pip list return as pip freeze including the current version of pip installed
+
+//
+
+>>pip freeze > requirements.txt
+
+----returns django packages installed and their versions listed inside requirements.txt file
+
+//
+
+>>pip uninstall Django
+
+----uninstalls django package leaving in pytz, sqlparse packages
+
+//
+
+>>pip show Django
+
+WARNING: Package(s) not found: django
+
+---- since django package is uninstalled it cant be found
+
+
