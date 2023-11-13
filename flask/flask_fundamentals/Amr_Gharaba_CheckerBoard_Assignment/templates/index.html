@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckerBoard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+</head>
+<style>
+    .color1{
+    width: 100px;
+    height: 100px;
+
+    background-color: {{color1}};
+    display: inline-block;
+    }
+    .color2{
+    width: 100px;
+    height: 100px;
+
+    background-color: {{color2}};
+    display: inline-block;
+</style>
+<body>
+    <table class="container">
+        {% for i in range (x): %}
+            {% if i%2: %}
+                <tr>
+                    {% for j in range (y): %}
+                        {% if j%2 : %}
+                            <td class="color1"></td>
+                        {% else: %}
+                            <td class="color2"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% else: %}
+                <tr>
+                    {% for j in range (y): %}
+                        {% if j%2 : %}
+                            <td class="color2"></td>
+                        {% else: %}
+                            <td class="color1"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</body>
+</html>
