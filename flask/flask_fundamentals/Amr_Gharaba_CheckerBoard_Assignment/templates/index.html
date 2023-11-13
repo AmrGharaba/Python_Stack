@@ -23,11 +23,11 @@
 </style>
 <body>
     <table class="container">
-        {% for i in range (x): %}
-            {% if i%2: %}
+        {% for i in range (x) %}
+            {% if i%2 %}
                 <tr>
                     {% for j in range (y): %}
-                        {% if j%2 : %}
+                        {% if j%2 %}
                             <td class="color1"></td>
                         {% else: %}
                             <td class="color2"></td>
@@ -37,9 +37,9 @@
             {% else: %}
                 <tr>
                     {% for j in range (y): %}
-                        {% if j%2 : %}
+                        {% if j%2 %}
                             <td class="color2"></td>
-                        {% else: %}
+                        {% else %}
                             <td class="color1"></td>
                         {% endif %}
                     {% endfor %}
