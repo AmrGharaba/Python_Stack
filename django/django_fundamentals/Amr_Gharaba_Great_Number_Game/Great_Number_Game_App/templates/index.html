@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Great Number Game</h1>
+        <h3>I'm thinking of a number between 1 and 100</h3>
+        <h3>Take a Guess</h3>
+        <h4>Number of Guesses : {{guesses}}</h4>
+        <div class="{{style}}">
+            <p >{{string}}</p>
+            <form class="form" action="/" method="post">
+                {% csrf_token %}
+                <input type={{playAgain}} name="submit" class="button" value="Play Again">
+        </div>
+        </form>
+        <form class="form" action="/submit" method="post">
+            {% csrf_token %}
+            <input type="{{number}}" name="number" id="number" class="number">
+            <input type="{{submit}}" name="submit" class="button">
+        </form>
+
+        
+
+
+
+
+    </div>
+    
+</body>
+</html>
