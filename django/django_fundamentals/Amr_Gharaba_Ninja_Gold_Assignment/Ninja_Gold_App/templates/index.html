@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h3>Your Gold : <span>{{Gold}}</span></h3>
+        <h3>Your Gold : <span>{{request.session.Gold}}</span></h3>
         <div class="activity">
             
             <form action="/quest" method="post">
@@ -39,7 +39,7 @@
             <form action="/quest" method="post">
                 {% csrf_token %}
                 <h2>Quest</h2>
-                <p>Earns ( 10 - 20 ) Gold Coins</p>
+                <p>Earns/Takes ( 0 - 50 ) Gold Coins</p>
                 <input type="submit" name="Quest" id="button" value="Find Gold">
                 <input type="hidden" name="which_form" value="Quest">
             </form>
