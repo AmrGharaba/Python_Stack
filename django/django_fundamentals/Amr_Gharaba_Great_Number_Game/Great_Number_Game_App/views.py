@@ -10,8 +10,6 @@ def index(request):
         return render(request,'index.html',content)
 
 
-        
-
 def submit(request):
     if not request.POST['number']:
         guess = 'invalid input'

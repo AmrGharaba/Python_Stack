@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Your Gold : <span>{{Gold}}</span></h3>
+        <div class="activity">
+            
+            <form action="/quest" method="post">
+                {% csrf_token %}
+                <h2>Farm</h2>
+                <p>Earns ( 10 - 20 ) Gold Coins</p>
+                <input type="submit" name="Farm" id="button" value="Find Gold">
+                <input type="hidden" name="which_form" value="Farm">
+            </form>
+
+            <form action="/quest" method="post">
+                {% csrf_token %}
+                <h2>Cave</h2>
+                <p>Earns ( 10 - 20 ) Gold Coins</p>
+                <input type="submit" name="Cave" id="button" value="Find Gold">
+                <input type="hidden" name="which_form" value="Cave">
+            </form>
+
+            <form action="/quest" method="post">
+                {% csrf_token %}
+                <h2>House</h2>
+                <p>Earns ( 10 - 20 ) Gold Coins</p>
+                <input type="submit" name="House" id="button" value="Find Gold">
+                <input type="hidden" name="which_form" value="House">
+            </form>
+
+            <form action="/quest" method="post">
+                {% csrf_token %}
+                <h2>Quest</h2>
+                <p>Earns ( 10 - 20 ) Gold Coins</p>
+                <input type="submit" name="Quest" id="button" value="Find Gold">
+                <input type="hidden" name="which_form" value="Quest">
+            </form>
+
+
+        </div>
+        <div class="log">
+            <h2>activities:</h2>
+            <div>
+                {% for time in request.session.time_stamp %}
+                    <p>{{time}}</p>
+                {% endfor %}
+            </div>
+
+
+
+
+        </div>
+    </div>
+    
+</body>
+</html>
