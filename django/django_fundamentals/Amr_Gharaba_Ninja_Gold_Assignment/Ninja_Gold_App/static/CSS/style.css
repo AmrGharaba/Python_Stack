@@ -8,13 +8,18 @@
     margin: 0 auto;
     padding: 20px 10%;
 }
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .activity{
     margin-top: 2%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-form{
+.quest{
     border: 1px solid black;
     border-radius: 5px;
     background-color: azure;
@@ -47,8 +52,7 @@ form{
     gap: 10px;
 }
 #button {
-    padding: 3px;
-    margin-top: 30px;
+    padding: 7px;
     border-radius: 5px;
     background-color: azure;
     border: 1px solid black;

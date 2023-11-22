@@ -9,10 +9,16 @@
 </head>
 <body>
     <div class="container">
+        <div class="header">
         <h3>Your Gold : <span>{{request.session.Gold}}</span></h3>
+        <form action="/reset" method="post">
+            {% csrf_token %}
+            <input type="submit" name="reset" id="button" value="reset">
+        </form>
+        </div>
         <div class="activity">
             
-            <form action="/quest" method="post">
+            <form class="quest" action="/quest" method="post">
                 {% csrf_token %}
                 <h2>Farm</h2>
                 <p>Earns ( 10 - 20 ) Gold Coins</p>
@@ -20,7 +26,7 @@
                 <input type="hidden" name="which_form" value="Farm">
             </form>
 
-            <form action="/quest" method="post">
+            <form class="quest" action="/quest" method="post">
                 {% csrf_token %}
                 <h2>Cave</h2>
                 <p>Earns ( 10 - 20 ) Gold Coins</p>
@@ -28,7 +34,7 @@
                 <input type="hidden" name="which_form" value="Cave">
             </form>
 
-            <form action="/quest" method="post">
+            <form class="quest" action="/quest" method="post">
                 {% csrf_token %}
                 <h2>House</h2>
                 <p>Earns ( 10 - 20 ) Gold Coins</p>
@@ -36,7 +42,7 @@
                 <input type="hidden" name="which_form" value="House">
             </form>
 
-            <form action="/quest" method="post">
+            <form class="quest" action="/quest" method="post">
                 {% csrf_token %}
                 <h2>Quest</h2>
                 <p>Earns/Takes ( 0 - 50 ) Gold Coins</p>

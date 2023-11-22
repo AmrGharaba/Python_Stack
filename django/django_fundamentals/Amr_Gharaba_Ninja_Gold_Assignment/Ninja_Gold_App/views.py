@@ -12,7 +12,7 @@ def quest(request):
     if 'Gold' not in request.session: request.session['Gold'] = 0
     else:
         print(request.POST["which_form"])
-        if request.POST["which_form"] == 'Farm' or request.POST["which_form"] == 'Cave' or request.POST["which_form"] == 'House':
+        if request.POST["which_form"] != 'Quest':
             random_number = random.randint(10,20)
             request.session['Gold'] += random_number
         else: 
@@ -33,7 +33,10 @@ def quest(request):
             request.session['time_stamp'].append(string)
     print(request.session['time_stamp'])
     return redirect('/')
-
+def reset(request):
+    request.session['time_stamp'] = []
+    request.session['Gold'] = 0
+    return redirect('/')
 
 
 
