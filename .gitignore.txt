@@ -1,1 +1,1 @@
-my_environments
+/my_environments

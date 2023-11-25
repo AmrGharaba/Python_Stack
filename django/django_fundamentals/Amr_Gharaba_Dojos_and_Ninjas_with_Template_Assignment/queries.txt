@@ -1,0 +1,61 @@
+> from dojo_ninjas_app.models import Dojo , Ninja
+
+
+> Dojo.objects.create(name = 'dojo1', city = 'city1', state = 'state1')
+
+> Dojo.objects.create(name = 'dojo2', city = 'city1', state = 'state1')
+
+> Dojo.objects.create(name = 'dojo3', city = 'city1', state = 'state1')
+
+
+> Dojo.objects.all().delete()
+
+
+
+> Dojo.objects.create(name = 'dojo1', city = 'city1', state = 'state1')
+
+> Dojo.objects.create(name = 'dojo2', city = 'city1', state = 'state1')
+
+> Dojo.objects.create(name = 'dojo3', city = 'city1', state = 'state1')
+
+
+> Ninja.objects.create(first_name = 'ninja', last_name = '1', dojo = Dojo.objects.first())
+
+> Ninja.objects.create(first_name = 'ninja', last_name = '2', dojo = Dojo.objects.first())
+
+> Ninja.objects.create(first_name = 'ninja', last_name = '3', dojo = Dojo.objects.first())
+
+
+> Ninja.objects.create(first_name = 'ninja1', last_name = '1', dojo = Dojo.objects.get(name = 'dojo2'))
+
+> Ninja.objects.create(first_name = 'ninja1', last_name = '2', dojo = Dojo.objects.get(name = 'dojo2'))
+
+> Ninja.objects.create(first_name = 'ninja1', last_name = '3', dojo = Dojo.objects.get(name = 'dojo2'))
+
+
+> Ninja.objects.create(first_name = 'ninja2', last_name = '1', dojo = Dojo.objects.get(name = 'dojo3'))
+
+> Ninja.objects.create(first_name = 'ninja2', last_name = '2', dojo = Dojo.objects.get(name = 'dojo3'))
+
+> Ninja.objects.create(first_name = 'ninja2', last_name = '3', dojo = Dojo.objects.get(name = 'dojo3'))
+
+> Dojo.objects.get(name = 'dojo1').ninjas.all()
+
+> Dojo.objects.last().ninjas.all()
+
+> Ninja.objects.last().dojo
+
+> added desc = models.TextField(null=True) in models.py inside Dojo class
+
+> exit()
+
+> python manage.py makemigrations
+
+> python manage.py migrate
+
+> python manage.py shell
+
+> from dojo_ninjas_app.models import Dojo, Ninja
+
+>Dojo.objects.create(name = 'dojo4' , city = 'city1' , state  = 'state1', desc = 'blame my lack of imagination') 
+
