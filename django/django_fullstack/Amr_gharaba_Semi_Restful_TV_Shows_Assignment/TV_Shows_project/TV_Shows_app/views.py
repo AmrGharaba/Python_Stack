@@ -2,6 +2,8 @@ from django.shortcuts import render,HttpResponse,redirect
 from .models import Shows
 from time import strftime, localtime
 def root(request):
+    return redirect('/shows')
+def shows(request):
     content = {
         'shows' : Shows.objects.all()
     }
