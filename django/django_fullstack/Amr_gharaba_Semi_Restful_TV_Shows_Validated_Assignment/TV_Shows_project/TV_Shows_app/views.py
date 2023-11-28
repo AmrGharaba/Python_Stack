@@ -1,4 +1,5 @@
 from django.shortcuts import render,HttpResponse,redirect
+from django.contrib import messages
 from .models import Shows
 from time import strftime, localtime
 def root(request):
@@ -12,9 +13,16 @@ def tv_form(request):
     return render(request,'tv_form.html')
 
 def tv_add(request):
-    Shows.objects.create(title = request.POST['title'],release_date = request.POST['release_date'], network = request.POST['network'] , desc= request.POST['discription'] )
-    request.session['id'] = Shows.objects.last().id
-    return redirect(f'/shows/{Shows.objects.last().id}')
+    errors = Shows.objects.basic_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            print(messages.error(request, value))
+        return redirect('/shows/tv_form')
+    else:
+        Shows.objects.create(title = request.POST['title'],release_date = request.POST['release_date'], network = request.POST['network'] , desc= request.POST['desc'] )
+        messages.success(request, "Show successfully created")
+        request.session['id'] = Shows.objects.last().id
+        return redirect(f'/shows/{Shows.objects.last().id}')
 
 def show_detail(request, id):
     content = {
@@ -33,15 +41,17 @@ def edit_form(request, id):
     return render(request, 'show_edit.html', content)
 
 def update(request, id):
-    
-    show = Shows.objects.get(id = id)
-    if request.POST['title']:
+
+    errors = Shows.objects.basic_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+    else:
+        show = Shows.objects.get(id = id)
         show.title = request.POST['title']
-    if request.POST['release_date']:
         show.release_date = request.POST['release_date']
-    if request.POST['network']:
         show.network = request.POST['network']
-    if request.POST['discription']:
-        show.desc = request.POST['discription']
-    show.save()
+        show.desc = request.POST['desc']
+        show.save()
+        messages.success(request, "Show successfully updated")
     return redirect(f'/shows/{id}')
