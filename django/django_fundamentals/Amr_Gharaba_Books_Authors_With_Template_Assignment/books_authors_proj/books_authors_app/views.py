@@ -11,6 +11,7 @@ def root(request):
 def add_book(request):
     Books.objects.create(title = request.POST['title'], desc = request.POST['description'])
     return redirect('/')
+
 def add_author(request):
     Authors.objects.create(first_name = request.POST['first_name'], last_name = request.POST['last_name'])
     return redirect('/')
