@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    <title>Book Details</title>
+</head>
+<body>
+    <p>{{book.title}}</p>
+    <p>{{book.my_user.first_name}} {{book.my_user.last_name}}</p>
+    <p>{{book.desc}}</p>
+    <p>{{display}}</p>
+
+    <div>
+        <p>Users who liked this book</p>
+        <ul>
+        {% for user in fav_users %}
+            <li>{{user.first_name}} {{user.last_name}} 
+                <!-- {% if display == 'show' %}
+                <a" href="/unfavorite/{{book.id}}">Un-Favorite</a>
+                {% endif %}     -->
+            </li>
+                
+        {% endfor %}
+        </ul>
+        <div class="{{display}}"></div>
+    </div>
+
+</body>
+</html>

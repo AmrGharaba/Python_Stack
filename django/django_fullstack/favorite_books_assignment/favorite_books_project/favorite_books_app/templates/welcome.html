@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body>
+    <a href="/logout">Log out</a>
+    <p>Welcome, {{user.first_name}} {{user.last_name}} !</p>
+    <p>Add a book</p>
+    <form action="/add_book" method="post">
+        {% csrf_token %}
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" class="text">
+        <label for="desc"></label>
+        <input type="text" name="desc" id="desc" class="text">
+        <input type="submit" name="submit" value="Add" class="button" >
+    </form>
+    <div>
+        <p>All books</p>
+        {% for book in books %}
+        <ul>
+            <li><a href="/book_details/{{book.id}}">{{book.title}}</a></li>
+            <li>{{book.my_user.first_name}} {{book.my_user.last_name}}</li>
+            <li>{{book.desc}}</li>
+        </ul>
+        {% endfor %}
+
+        
+
+
+
+
+
+
+    </div>
+</body>
+</html>
