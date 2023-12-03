@@ -1,0 +1,106 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+}
+
+.container {
+    margin: 0 auto;
+    padding:0px 10%;
+}
+
+#index .container .forms>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#index .forms{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+#index .container .forms>div h1 {
+    margin-bottom: 30px;
+}
+
+#index form {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+}
+#index form div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0px;
+    gap: 10px;
+}
+
+.field {
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 4px;
+}
+
+.button {
+    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px black;
+    padding: 3px 5px;
+    align-self: self-end;
+    margin-top: 20px;
+}
+
+#wall .header{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 40px 10px 10px 10px;
+    border-bottom: 2px solid black;
+    background-color:azure;
+}
+#wall .header h1{
+    flex: 3;
+}
+#wall .header div{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ul{
+    margin: 2px 0px;
+    list-style: none;
+}
+ul li{
+    margin: 3px 0;
+}
+#wall .body{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+#wall .body form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+}
+.messages {
+    margin-top: 20px;
+    padding: 0 10%;
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+    justify-content: center;
+}
+
+
