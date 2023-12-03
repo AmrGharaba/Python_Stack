@@ -37,46 +37,46 @@
                             {% if book.my_user == current_user %}
                             <textarea name="desc" id="desc" cols="30" rows="10" class="field"
                                 placeholder="{{book.desc}}" value="{{book.desc}}"></textarea>
-                        <div class="submit_delete">
+                            <div class="submit_delete">
                                 <input type="submit" name="submit" class="button">
-                            
+
                     </form>
-                    
-                            <form action="/delete/{{book.id}}" method="post">{% csrf_token %}
-                                <input type="submit" name="Delete" id="delete" class="button" value="Delete">
-                            </form>
-                        </div>
-                    {% else %}
-                    {{book.desc}}
-                    {% endif %}
 
-                    </li>
-                </ul>
+                    <form action="/delete/{{book.id}}" method="post">{% csrf_token %}
+                        <input type="submit" name="Delete" id="delete" class="button" value="Delete">
+                    </form>
             </div>
-            <div class="right_panel">
-                <h2>Users who liked this book</h2>
-                <ul>
-                    {% for user in fav_users %}
-                    <li>{{user.first_name}} {{user.last_name}}
-                        {% if user == current_user and book in current_user.fav_books.all %}
-                        <a href="/unfavorite/{{book.id}}">Un-Favorite</a>
-                        {% endif %}
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% if book not in current_user.fav_books.all %}
-                <a href="/add_to_favorite/{{book.id}}">Add book to favorite</a>
-                {% endif %}
+            {% else %}
+            {{book.desc}}
+            {% endif %}
 
-            </div>
+            </li>
+            </ul>
         </div>
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+        <div class="right_panel">
+            <h2>Users who liked this book</h2>
+            <ul>
+                {% for user in fav_users %}
+                <li>{{user.first_name}} {{user.last_name}}
+                    {% if user == current_user and book in current_user.fav_books.all %}
+                    <a href="/unfavorite/{{book.id}}">Un-Favorite</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% if book not in current_user.fav_books.all %}
+            <a href="/add_to_favorite/{{book.id}}">Add book to favorite</a>
+            {% endif %}
+
+        </div>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     </div>
 
 </body>

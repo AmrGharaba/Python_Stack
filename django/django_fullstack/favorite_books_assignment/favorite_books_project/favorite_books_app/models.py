@@ -20,7 +20,7 @@ class usermanager(models.Manager):
 class bookmanager(models.Manager):
     def basic_validator(self,postData):
         errors = {}
-        if postData['title'] == []:
+        if len(postData['title']) < 1 :
             errors['title'] = 'Title is required'
         if len(postData['desc']) < 5:
             errors['desc'] = 'Description must be atleast 5 characters long'
