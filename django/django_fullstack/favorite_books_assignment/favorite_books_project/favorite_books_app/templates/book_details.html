@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,77 @@
     <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
     <title>Book Details</title>
 </head>
-<body>
-    <p>{{book.title}}</p>
-    <p>{{book.my_user.first_name}} {{book.my_user.last_name}}</p>
-    <p>{{book.desc}}</p>
-    <p>{{display}}</p>
 
-    <div>
-        <p>Users who liked this book</p>
-        <ul>
-        {% for user in fav_users %}
-            <li>{{user.first_name}} {{user.last_name}} 
-                <!-- {% if display == 'show' %}
-                <a" href="/unfavorite/{{book.id}}">Un-Favorite</a>
-                {% endif %}     -->
-            </li>
-                
-        {% endfor %}
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome, {{current_user.first_name}} {{current_user.last_name}} !</h1>
+            <a href="/logout">Log out</a>
+        </div>
+        <div class="mid">
+            <div class="left_panel">
+                <ul id="book_details">
+
+                    {% if book.my_user == current_user %}
+                    <form action="/update/{{book.id}}" method="post">{% csrf_token %}
+
+                        <input type="text" name="title" id="title" class="field" value="{{book.title}}">
+                        {% else %}
+                        <li>
+                            <h2>{{book.title}}</h2>
+                        </li>
+                        {% endif %}
+
+                        <li>Added by : {{book.my_user.first_name}} {{book.my_user.last_name}}</li>
+                        <li>Added on : {{book.created_at}}</li>
+                        <li>Last updated on {{book.updated_at}}</li>
+
+                        <li>Description :
+                            {% if book.my_user == current_user %}
+                            <textarea name="desc" id="desc" cols="30" rows="10" class="field"
+                                placeholder="{{book.desc}}" value="{{book.desc}}"></textarea>
+                        <div class="submit_delete">
+                                <input type="submit" name="submit" class="button">
+                            
+                    </form>
+                    
+                            <form action="/delete/{{book.id}}" method="post">{% csrf_token %}
+                                <input type="submit" name="Delete" id="delete" class="button" value="Delete">
+                            </form>
+                        </div>
+                    {% else %}
+                    {{book.desc}}
+                    {% endif %}
+
+                    </li>
+                </ul>
+            </div>
+            <div class="right_panel">
+                <h2>Users who liked this book</h2>
+                <ul>
+                    {% for user in fav_users %}
+                    <li>{{user.first_name}} {{user.last_name}}
+                        {% if user == current_user and book in current_user.fav_books.all %}
+                        <a href="/unfavorite/{{book.id}}">Un-Favorite</a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% if book not in current_user.fav_books.all %}
+                <a href="/add_to_favorite/{{book.id}}">Add book to favorite</a>
+                {% endif %}
+
+            </div>
+        </div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
         </ul>
-        <div class="{{display}}"></div>
+        {% endif %}
     </div>
 
 </body>
+
 </html>

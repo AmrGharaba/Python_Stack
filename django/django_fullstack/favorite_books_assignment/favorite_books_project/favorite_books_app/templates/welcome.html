@@ -3,37 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
     <title>Welcome</title>
 </head>
-<body>
-    <a href="/logout">Log out</a>
-    <p>Welcome, {{user.first_name}} {{user.last_name}} !</p>
-    <p>Add a book</p>
-    <form action="/add_book" method="post">
-        {% csrf_token %}
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" class="text">
-        <label for="desc"></label>
-        <input type="text" name="desc" id="desc" class="text">
-        <input type="submit" name="submit" value="Add" class="button" >
-    </form>
-    <div>
-        <p>All books</p>
-        {% for book in books %}
-        <ul>
-            <li><a href="/book_details/{{book.id}}">{{book.title}}</a></li>
-            <li>{{book.my_user.first_name}} {{book.my_user.last_name}}</li>
-            <li>{{book.desc}}</li>
-        </ul>
-        {% endfor %}
+<body id="welcome">
+    <div class="container">
+        <div class="header">
+            <h1>Welcome, {{user.first_name}} {{user.last_name}} !</h1>
+            <a href="/logout">Log out</a>
+        </div>
+        <div class="mid">
+            <div class="left_panel">
+                <h2>Add a book</h2>
+                <form action="/add_book" method="post">
+                    {% csrf_token %}
+                    <div>
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title" class="field">
+                    </div>
+                    <div>
+                        <label for="desc">Description</label>
+                        <input type="text" name="desc" id="desc" class="field">
+                    </div>
+                    <input type="submit" name="submit" value="Add" class="button" >
+                </form>
+            </div>
+            <div class="right_panel">
+            <h2>All books</h2>
+            {% for book in books %}
+                <ul>
+                    <li><a href="/book_details/{{book.id}}">{{book.title}}</a></li>
+                    <li>{{book.my_user.first_name}} {{book.my_user.last_name}}</li>
+                    {% if book in user.fav_books.all %}
+                        <li>you favorited this book</li>
+                    {% else %}
+                        <li><a href="/add_to_favorite/{{book.id}}">Add book to favorite</a></li>
+                    {% endif %}
 
-        
-
-
-
-
-
-
+                </ul>
+            {% endfor %}
+            </div>
+        </div>
     </div>
 </body>
 </html>
